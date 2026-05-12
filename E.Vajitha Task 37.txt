@@ -1,0 +1,52 @@
+1. Build a text input with `useState` that shows a live preview of typed text.
+
+Ans:  // App.jsx
+import { useState } from "react";
+
+function App() {
+  const [text, setText] = useState("");
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Type something..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+
+      <h2>Live Preview:</h2>
+      <p>{text}</p>
+    </div>
+  );
+}
+
+export default App;
+
+2.Add a toggle switch using `useState` to switch dark/light mode styles.
+
+Ans:  // App.jsx
+import { useState } from "react";
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const appStyle = {
+    backgroundColor: darkMode ? "black" : "white",
+    color: darkMode ? "white" : "black",
+    height: "100vh",
+    padding: "20px",
+  };
+
+  return (
+    <div style={appStyle}>
+      <h1>{darkMode ? "Dark Mode" : "Light Mode"}</h1>
+
+      <button onClick={() => setDarkMode(!darkMode)}>
+        Toggle Mode
+      </button>
+    </div>
+  );
+}
+
+export default App;
