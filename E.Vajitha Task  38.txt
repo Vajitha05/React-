@@ -1,0 +1,130 @@
+1.Create a counter using `useReducer` with actions: INCREMENT, DECREMENT, RESET.
+
+Ans:  // App.jsx
+import { useReducer } from "react";
+
+const initialState = 0;
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+
+    case "DECREMENT":
+      return state - 1;
+
+    case "RESET":
+      return initialState;
+
+    default:
+      return state;
+  }
+}
+
+function App() {
+  const [count, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>
+        Increment
+      </button>
+
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>
+        Decrement
+      </button>
+
+      <button onClick={() => dispatch({ type: "RESET" })}>
+        Reset
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+2.Use `useRef` to focus the input when a 'Focus' button is clicked.
+
+Ans:  // App.jsx
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef(null);
+
+  const handleFocus = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        ref={inputRef}
+        placeholder="Enter text"
+      />
+
+      <button onClick={handleFocus}>
+        Focus
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+3.Write a small utility to persist the counter in `localStorage` and rehydrate on load.
+
+Ans: // App.jsx
+import { useReducer, useEffect } from "react";
+
+const initialState = () => {
+  const savedCount = localStorage.getItem("count");
+  return savedCount ? Number(savedCount) : 0;
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+
+    case "DECREMENT":
+      return state - 1;
+
+    case "RESET":
+      return 0;
+
+    default:
+      return state;
+  }
+}
+
+function App() {
+  const [count, dispatch] = useReducer(reducer, 0, initialState);
+
+  // Save count in localStorage
+  useEffect(() => {
+    localStorage.setItem("count", count);
+  }, [count]);
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>
+        Increment
+      </button>
+
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>
+        Decrement
+      </button>
+
+      <button onClick={() => dispatch({ type: "RESET" })}>
+        Reset
+      </button>
+    </div>
+  );
+}
+
+export default App;
