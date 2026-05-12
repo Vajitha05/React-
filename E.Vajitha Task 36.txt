@@ -1,0 +1,158 @@
+1.Build a reusable `Button` component that accepts `label` and `onClick` props.
+
+Ans: // Button.jsx
+function Button({ label, onClick }) {
+  return (
+    <button onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+export default Button;
+
+// App.jsx
+import Button from "./Button";
+
+function App() {
+  const handleClick = () => {
+    alert("Button clicked!");
+  };
+
+  return (
+    <div>
+      <Button label="Click Me" onClick={handleClick} />
+    </div>
+  );
+}
+
+export default App;
+
+2.Create `Header` and `Footer` components and pass props to customize text.
+
+Ans:  // Header.jsx
+function Header({ title }) {
+  return (
+    <header>
+      <h1>{title}</h1>
+    </header>
+  );
+}
+
+export default Header;
+
+// Footer.jsx
+function Footer({ text }) {
+  return (
+    <footer>
+      <p>{text}</p>
+    </footer>
+  );
+}
+
+export default Footer;
+
+// App.jsx
+import Header from "./Header";
+import Footer from "./Footer";
+
+function App() {
+  return (
+    <div>
+      <Header title="Welcome to My Website" />
+
+      <h2>React Props Example</h2>
+
+      <Footer text="© 2026 My Website" />
+    </div>
+  );
+}
+
+export default App;
+
+3. Build a `Layout` component that renders `props.children` between header and footer.
+
+Ans:  // Layout.jsx
+function Layout({ children }) {
+  return (
+    <div>
+      <header>
+        <h1>My Website</h1>
+      </header>
+
+      <main>
+        {children}
+      </main>
+
+      <footer>
+        <p>© 2026 My Website</p>
+      </footer>
+    </div>
+  );
+}
+
+export default Layout;
+
+// App.jsx
+import Layout from "./Layout";
+
+function App() {
+  return (
+    <Layout>
+      <h2>Welcome</h2>
+      <p>This content comes from props.children</p>
+    </Layout>
+  );
+}
+
+export default App;
+
+4.Create a `UserCard` component that displays a user's name and age from props.
+
+Ans:  // UserCard.jsx
+function UserCard({ name, age }) {
+  return (
+    <div>
+      <h2>Name: {name}</h2>
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+
+export default UserCard;
+
+// App.jsx
+import UserCard from "./UserCard";
+
+function App() {
+  return (
+    <div>
+      <UserCard name="Vajitha" age={21} />
+    </div>
+  );
+}
+
+export default App;
+
+5.Refactor `App.jsx` to use the new components and render a small page.
+
+Ans:  // App.jsx
+import Layout from "./Layout";
+import Button from "./Button";
+import UserCard from "./UserCard";
+
+function App() {
+  const handleClick = () => {
+    alert("Button Clicked!");
+  };
+
+  return (
+    <Layout>
+      <UserCard name="Vajitha" age={21} />
+
+      <Button label="Click Me" onClick={handleClick} />
+    </Layout>
+  );
+}
+
+export default App;
