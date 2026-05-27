@@ -1,0 +1,111 @@
+App.jsx
+
+import Calculator from './CalculatorApp.jsx';
+import WeatherApp from './WeatherApp.jsx';
+import React from 'react';
+
+
+function App() {
+  return (
+   <>
+  <WeatherApp/>
+  {/* <Calculator/> */}
+  </>
+  );
+}
+
+export default App;
+
+
+CalculatorApp.jsx
+
+import { useState } from "react";
+
+function Calculator() {
+
+    const [num1, setNum1] = useState('');
+    const [num2, setNum2] = useState('');
+    const [result, setResult] = useState('');
+
+    function add() {
+        setResult(Number(num1) + Number(num2));
+    }
+
+    return (
+        <div>
+
+            <input
+                type="text"
+                placeholder="First Number"
+                value={num1}
+                onChange={(e) => setNum1(e.target.value)}
+            />
+
+            <br /><br />
+
+            <input
+                type="text"
+                placeholder="Second Number"
+                value={num2}
+                onChange={(e) => setNum2(e.target.value)}
+            />
+
+            <br /><br />
+
+            <button onClick={add}>
+                Add
+            </button>
+
+            <h2>Result : {result}</h2>
+
+        </div>
+    );
+}
+
+export default Calculator;
+
+
+WeatherApp.jsx
+
+import { useState } from "react";
+
+function WeatherApp() {
+
+    const [city, setCity] = useState('');
+    const [temp, setTemp] = useState('');
+
+    const apiKey = "YOUR_API_KEY";
+
+    function getWeather() {
+
+        fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        )
+        .then((response) => response.json())
+        .then((data) => {
+            setTemp(data.main.temp);
+        });
+
+    }
+
+    return (
+        <div>
+
+            <input
+                type="text"
+                placeholder="Enter city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+            />
+
+            <button onClick={getWeather}>
+                Search
+            </button>
+
+            <h2>{temp} °C</h2>
+
+        </div>
+    );
+}
+
+export default WeatherApp;
