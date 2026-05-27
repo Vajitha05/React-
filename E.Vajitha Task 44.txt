@@ -1,0 +1,372 @@
+ 
+App.jsx
+
+import React from "react";
+
+import {
+  Container,
+  Typography,
+  Button,
+} from "@mui/material";
+
+import Form from "./Form";
+import Productcard from "./Card";
+import FormAndCard from "./FormandCard";
+import ButtonCustomize from "./ButtonCustomize";
+
+function App() {
+  return (
+    <>
+      <Container sx={{ mt: 5 }}>
+        <Typography
+          variant="h4"
+          color="primary"
+          gutterBottom
+        >
+          Welcome to MUI Theme
+        </Typography>
+
+        <Button
+          variant="contained"
+          color="primary"
+        >
+          Primary Button
+        </Button>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ ml: 2 }}
+        >
+          Secondary Button
+        </Button>
+      </Container>
+      
+       <Form />
+
+      <ProductCard />
+
+      <FormAndCard />
+
+      <ButtonCustomize /> 
+    </>
+  );
+}
+
+export default App;
+
+
+
+ButtonCustomize.jsx
+
+function ButtonCustomize() {
+  return (
+    <Container sx={{ mt: 5 }}>
+
+      <Button
+        variant="contained"
+        sx={{ mr: 2 }}
+      >
+        Login
+      </Button>
+
+      <Button variant="outlined">
+        Register
+      </Button>
+
+    </Container>
+  );
+}
+
+
+ButtonMui.jsx
+
+export default ButtonCustomize;
+
+import React from "react";
+import { Button } from "@mui/material";
+
+function ButtonMUI() {
+  return (
+    <div>
+      <Button variant="contained" color="primary">
+        Contained Button
+      </Button>
+
+      <br /><br />
+
+      <Button variant="outlined" color="secondary">
+        Outlined Button
+      </Button>
+    </div>
+  );
+}
+
+export default ButtonMUI;
+
+Card.jsx
+
+function ProductCard() {
+  return (
+    <Container sx={{ marginTop: 5 }}>
+      <Card sx={{ maxWidth: 350, padding: 2 }}>
+        
+        <CardHeader
+          title="Wireless Headphones"
+          subheader="Best Audio Product"
+        />
+
+        <CardContent>
+          <Typography variant="body1">
+            Experience high-quality sound with noise cancellation
+            and long battery life.
+          </Typography>
+
+          <Typography
+            variant="h6"
+            color="primary"
+            sx={{ marginTop: 2 }}
+          >
+            ₹2999
+          </Typography>
+        </CardContent>
+
+        <CardActions>
+          <Button variant="contained">
+            Buy Now
+          </Button>
+
+          <Button variant="outlined">
+            Add to Cart
+          </Button>
+        </CardActions>
+
+      </Card>
+    </Container>
+  );
+}
+
+
+Form.jsx
+export default ProductCard;
+
+import React, { useState } from "react";
+
+function Form() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log(formData);
+
+    alert("Login Successful");
+  }
+
+  return (
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          marginTop: 10,
+          padding: 4,
+          boxShadow: 3,
+          borderRadius: 3,
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+        >
+          Login Form
+        </Typography>
+
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            name="email"
+            margin="normal"
+            value={formData.email}
+            onChange={handleChange}
+          />
+
+          <TextField
+            fullWidth
+            label="Password"
+            type="password"
+            name="password"
+            margin="normal"
+            value={formData.password}
+            onChange={handleChange}
+          />
+
+          <Button
+            fullWidth
+            variant="contained"
+            type="submit"
+            sx={{ marginTop: 2 }}
+          >
+            Login
+          </Button>
+        </form>
+      </Box>
+    </Container>
+  );
+}
+
+export default Form;
+
+
+import React, { useState } from "react";
+
+
+function FormAndCard() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+
+FormandCard.jsx
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    alert("Login Successful");
+  }
+
+  return (
+    <Container
+      maxWidth="md"
+      sx={{
+        mt: 5,
+        display: "flex",
+        justifyContent: "center",
+        gap: 5,
+        flexWrap: "wrap",
+      }}
+    >
+
+      {/* Login Form */}
+
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          width: 350,
+          p: 4,
+          boxShadow: 3,
+          borderRadius: 3,
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="center"
+        >
+          Login Form
+        </Typography>
+
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          fullWidth
+          value={formData.email}
+          onChange={handleChange}
+        />
+
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          fullWidth
+          value={formData.password}
+          onChange={handleChange}
+        />
+
+        <Button
+          variant="contained"
+          type="submit"
+          fullWidth
+        >
+          Login
+        </Button>
+      </Box>
+
+      {/* Product Card */}
+
+      <Card
+        sx={{
+          width: 350,
+          p: 2,
+          borderRadius: 3,
+          boxShadow: 3,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <CardHeader
+          title="Wireless Headphones"
+          subheader="Premium Sound Quality"
+        />
+
+        <CardContent>
+          <Typography variant="body1">
+            Enjoy crystal clear audio with deep bass,
+            noise cancellation, and long-lasting battery life.
+          </Typography>
+
+          <Typography
+            variant="h5"
+            color="primary"
+            sx={{ mt: 2 }}
+          >
+            ₹2999
+          </Typography>
+        </CardContent>
+
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            px: 2,
+            pb: 2,
+          }}
+        >
+          <Button variant="contained">
+            Buy Now
+          </Button>
+
+          <Button variant="outlined">
+            Add to Cart
+          </Button>
+        </CardActions>
+      </Card>
+
+    </Container>
+  );
+}
+
+export default FormAndCard;
