@@ -1,0 +1,141 @@
+
+Ans:  import StyleCard from './StyleCard.jsx'
+import NavbarStyle from './NavbarStyle.jsx'
+import ButtonGroup from './ButtonGroup.jsx';
+import DifferentButton from './DifferentButton.jsx';
+
+
+function App() {
+  return (
+   <>
+     <div className="max-w-sm p-6 m-5 border border-gray-300 rounded-xl shadow-lg bg-white">
+      
+      <h1 className="text-2xl font-bold mb-3 text-gray-800">
+        Product Card
+      </h1>
+
+      <p className="text-gray-600 text-base leading-relaxed mb-4">
+        This is a simple card component styled using Tailwind CSS spacing,
+        typography, and border utilities.
+      </p>
+
+      <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        Buy Now
+      </button>
+
+    </div>
+
+    <StyleCard/>
+ 
+    <NavbarStyle/>
+
+    <ButtonGroup/>
+    
+    <DifferentButton/>
+
+  </>
+  );
+}
+
+export default App;
+
+
+1. Install and configure Tailwind in the React app.
+
+Ans: function ButtonGroup() {
+  return (
+    <div className="flex gap-4 p-5">
+      
+      <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 active:scale-95">
+        Save
+      </button>
+
+      <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 focus:ring-2 focus:ring-green-300 active:scale-95">
+        Edit
+      </button>
+
+      <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 focus:ring-2 focus:ring-red-300 active:scale-95">
+        Delete
+      </button>
+
+    </div>
+  );
+}
+
+export default ButtonGroup;
+
+2. Style a `Card` component using spacing, typography, and border utilities.
+
+Ans:  function Button({ text, color }) {
+  return (
+    <button
+      className={`text-white px-4 py-2 rounded hover:opacity-80 ${color}`}
+    >
+      {text}
+    </button>
+  );
+}
+
+function DifferentButton() {
+  return (
+    <div className="flex gap-4 p-5">
+      
+      <Button text="Save" color="bg-blue-500" />
+
+      <Button text="Edit" color="bg-green-500" />
+
+      <Button text="Delete" color="bg-red-500" />
+
+    </div>
+  );
+}
+
+export default DifferentButton;
+
+
+
+3.Create a responsive navbar using Flexbox/Grid utilities and breakpoints.
+
+function Navbar() {
+  return (
+    <nav className="flex flex-col md:flex-row justify-between items-center bg-blue-500 text-white p-4">
+      
+      <h1 className="text-2xl font-bold">
+        Logo
+      </h1>
+
+      <ul className="flex gap-5 mt-3 md:mt-0">
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+
+    </nav>
+  );
+}
+
+export default Navbar;
+
+
+function Card() {
+  return (
+    <div className="max-w-sm p-6 m-5 border border-gray-300 rounded-xl shadow-lg bg-white">
+      
+      <h1 className="text-2xl font-bold mb-3 text-gray-800">
+        Product Card
+      </h1>
+
+      <p className="text-gray-600 text-base leading-relaxed mb-4">
+        This is a simple card component styled using Tailwind CSS spacing,
+        typography, and border utilities.
+      </p>
+
+      <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        Buy Now
+      </button>
+
+    </div>
+  );
+}
+
+export default Card;
