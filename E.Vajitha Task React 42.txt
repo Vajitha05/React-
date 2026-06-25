@@ -1,0 +1,136 @@
+About.jsx
+
+import React from "react";
+
+function About() {
+  return <h2>About Page</h2>;
+}
+
+export default About;
+
+App.jsx
+
+// import { useState } from 'react'
+import { Link, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { useReducer, useRef, useEffect } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import Home from './DAY42/Home'
+import About from './DAY42/About'
+import UserDetails from './DAY42/UserDetails'
+import Users from './DAY42/Users'
+// import Forms from './DAY40/Forms'
+// import Map from './DAY38/Map'
+// import Layout from './DAY36/Layout'
+// import UserCard from './DAY36/UserCard'
+// import Button from './DAY36/Button'
+// import Usestate from './DAY37/Usestate'
+import './App.css'
+// import Search from './DAY38/Search'
+// import UserDashboard from './DAY41/Userdashboard'
+
+
+function App() {
+
+
+  return (
+     
+<div style={{ padding: "20px" }}>
+      <nav style={{ marginBottom: "20px" }}>
+        <Link to="/" style={{ marginRight: "10px" }}>
+          Home
+        </Link>
+
+        <Link to="/about" style={{ marginRight: "10px" }}>
+          About
+        </Link>
+
+        <Link to="/users">Users</Link>
+      </nav>
+
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+
+        <Route path="/users/:id" element={<UserDetails />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App
+
+
+    //  {/* <UserDashboard/> */}
+    //  {/* <FetchUsers/> */}
+    //  {/* <Forms/> */}
+    //  {/* <Map/>
+    //  <Search/> */}
+
+Home.jsx
+
+import React from "react";
+
+function Home() {
+  return <h2>Home Page</h2>;
+}
+
+export default Home;
+
+UserDetails.jsx
+
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+function UserDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      <h2>User Details</h2>
+
+      <p>User ID: {id}</p>
+
+      <button onClick={() => navigate("/users")}>
+        Back to Users
+      </button>
+    </div>
+  );
+}
+
+export default UserDetails;
+
+Users.jsx
+
+import React from "react";
+import { Link } from "react-router-dom";
+function Users() {
+  const users = [
+    { id: 1, name: "John" },
+    { id: 2, name: "Alice" },
+    { id: 3, name: "David" },
+  ];
+
+  return (
+    <div>
+      <h2>Users Page</h2>
+
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            <Link to={`/users/${user.id}`}>
+              {user.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Users;
